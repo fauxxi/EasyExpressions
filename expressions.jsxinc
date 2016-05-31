@@ -1,0 +1,197 @@
+//INERTIA POSITION
+function inertiaPos(a, f, d){
+   var amp, freq, decay;
+   if (typeof a === "undefined" || a === null) {
+		   amp = 3.0;
+		   } else {
+		   		amp = a;
+		   }
+   if (typeof f === "undefined" || f === null) {
+		   freq = 3.0;
+	   		} else {
+		   		freq = f;
+		   }
+   if (typeof d === "undefined" || d === null) {
+	   		decay = 2.0;
+   			} else {
+		   		decay = d;
+		   }
+    var exp =
+    "amp = "+amp+";freq ="+freq+";decay ="+decay+";n = 0;if (numKeys > 0){n = nearestKey(time).index;if (key(n).time > time){n--;}}if (n == 0) {t = 0;} else {t = time - key(n).time;}if (n > 0){v = velocityAtTime(key(n).time - thisComp.frameDuration/10);value + (v/100)*amp*Math.sin(freq*t*2*Math.PI)/Math.exp(decay*t);}else{value;}";
+    return exp;
+}
+
+//INERTIA ROTATION
+function inertiaRot(a, f, d){
+   var amp, freq, decay;
+   if (typeof a === "undefined" || a === null) {
+		   amp = 3.0;
+		   } else {
+		   		amp = a;
+		   }
+   if (typeof f === "undefined" || f === null) {
+		   freq = 3.0;
+	   		} else {
+		   		freq = f;
+		   }
+   if (typeof d === "undefined" || d === null) {
+	   		decay = 2.0;
+   			} else {
+		   		decay = d;
+		   }
+    var exp =
+    "amp = "+amp+";freq = "+freq+";decay = "+decay+";n = 0;if (numKeys > 0){n = nearestKey(time).index;if (key(n).time > time){n--;}}if (n == 0) {t = 0;} else {t = time - key(n).time;}if (n > 0){v = velocityAtTime(key(n).time - thisComp.frameDuration/10);value + (v/100)*amp*Math.sin(freq*t*2*Math.PI)/Math.exp(decay*t);}else{value;}";
+    return exp;
+}
+
+//INERTIA SCALE
+function inertiaScale(a, f, d){
+   var amp, freq, decay;
+   if (typeof a === "undefined" || a === null) {
+		   amp = 3.0;
+		   } else {
+		   		amp = a;
+		   }
+   if (typeof f === "undefined" || f === null) {
+		   freq = 3.0;
+	   		} else {
+		   		freq = f;
+		   }
+   if (typeof d === "undefined" || d === null) {
+	   		decay = 2.0;
+   			} else {
+		   		decay = d;
+		   }
+    var exp =
+    "amp = "+amp+";freq = "+freq+";decay = "+decay+";n = 0;if (numKeys > 0){n = nearestKey(time).index;if (key(n).time > time){n--;}}if (n == 0) {t = 0;} else {t = time - key(n).time;}if (n > 0){v = velocityAtTime(key(n).time - thisComp.frameDuration/10);value + (v/100)*amp*Math.sin(freq*t*2*Math.PI)/Math.exp(decay*t);}else{value;}";
+    return exp;
+}
+
+//BOUNCE POSITION
+function bouncePos(p, a, s){
+   var period, amp, slack;
+   if (typeof p === "undefined" || p === null) {
+		   period = 0.8;
+		   } else {
+		   		period = p;
+		   }
+   if (typeof a === "undefined" || a === null) {
+		   amp = 50;
+	   		} else {
+		   		amp = a;
+		   }
+   if (typeof s === "undefined" || s === null) {
+	   		slack = 1.70158;
+   			} else {
+		   		slack = s;
+		   }
+    var exp =
+    "p = "+period+";a = "+amp+";s = "+slack+";function outBounce(t, b, c, d, a, p) {if ((t/=d) < (1/2.75)) {return c*(7.5625*t*t) + b;} else if (t < (2/2.75)) {return c*(7.5625*(t-=(1.5/2.75))*t + .75) + b;} else if (t < (2.5/2.75)) {return c*(7.5625*(t-=(2.25/2.75))*t + .9375) + b;} else {return c*(7.5625*(t-=(2.625/2.75))*t + .984375) + b;}}function easeAndWizz() {var n = 0;if (numKeys > 0) {n = nearestKey(time).index;if (key(n).time > time)	{ n-- }}try {var key1 = key(n);var key2 = key(n+1);} catch(e) {return null;}var dim = 1;try {key(1)[1];dim = 2;key(1)[2];dim = 3;} catch(e) {}t = time - key1.time;d = key2.time - key1.time;sX = key1[0];eX = key2[0] - key1[0];if (dim >= 2) {sY = key1[1];eY = key2[1] - key1[1];if (dim >= 3) {sZ = key1[2];eZ = key2[2] - key1[2];}}if ((time < key1.time) || (time > key2.time)) {return value;} else {val1 =  outBounce(t, sX, eX, d, a, p, s);switch (dim) {case 1:return val1;break;case 2:val2 = outBounce(t, sY, eY, d, a, p, s);return [val1, val2];break;case 3:val2 = outBounce(t, sY, eY, d, a, p, s);val3 = outBounce(t, sZ, eZ, d, a, p, s);return [val1, val2, val3];break;default:return null;}}}(easeAndWizz() || value);";
+    return exp;
+}
+
+//ELASTIC POSITION
+function elasticPos(p, a, s){
+   var period, amp, slack;
+   if (typeof p === "undefined" || p === null) {
+		   period = 0.6;
+		   } else {
+		   		period = p;
+		   }
+   if (typeof a === "undefined" || a === null) {
+		   amp = 140;
+	   		} else {
+		   		amp = a;
+		   }
+   if (typeof s === "undefined" || s === null) {
+	   		slack = 1.70158;
+   			} else {
+		   		slack = s;
+		   }
+    var exp =
+    "p = "+period+";a = "+amp+";s = "+slack+";function outElastic(t, b, c, d, a, p) {if (t==0) return b;  if ((t/=d)==1) return b+c;  if (!p) p=d*.3;if (!a || a < Math.abs(c)) { a=c; var s=p/4; }else var s = p/(2*Math.PI) * Math.asin (c/a);return (a*Math.pow(2,-10*t) * Math.sin( (t*d-s)*(2*Math.PI)/p ) + c + b);}function easeAndWizz() {var n = 0;if (numKeys > 0) {n = nearestKey(time).index;if (key(n).time > time)	{ n-- }}try {var key1 = key(n);var key2 = key(n+1);} catch(e) {return null;}var dim = 1;try {key(1)[1];dim = 2;key(1)[2];dim = 3;} catch(e) {}t = time - key1.time;d = key2.time - key1.time;sX = key1[0];eX = key2[0] - key1[0];if (dim >= 2) {sY = key1[1];eY = key2[1] - key1[1];if (dim >= 3) {sZ = key1[2];eZ = key2[2] - key1[2];}}if ((time < key1.time) || (time > key2.time)) {return value;} else {val1 =  outElastic(t, sX, eX, d, a, p, s);switch (dim) {case 1:return val1;break;case 2:val2 = outElastic(t, sY, eY, d, a, p, s);return [val1, val2];break;case 3:val2 = outElastic(t, sY, eY, d, a, p, s);val3 = outElastic(t, sZ, eZ, d, a, p, s);return [val1, val2, val3];break;default:return null;}}}(easeAndWizz() || value);";
+    return exp;
+}
+
+
+//BACK POSITION
+function backPos(p, a, s) {
+   var period, amp, slack;
+   if (typeof p === "undefined" || p === null) {
+		   period = 0.8;
+		   } else {
+		   		period = p;
+		   }
+   if (typeof a === "undefined" || a === null) {
+		   amp = 50;
+	   		} else {
+		   		amp = a;
+		   }
+   if (typeof s === "undefined" || s === null) {
+	   		slack = 1.70158;
+   			} else {
+		   		slack = s;
+		   }
+    var exp =
+    "p = "+period+";a = "+amp+";s = "+slack+";function outBack(t, b, c, d, a, p) {if (s == null) s = 1.70158;return c*((t=t/d-1)*t*((s+1)*t + s) + 1) + b;}function easeAndWizz() {var n = 0;if (numKeys > 0) {n = nearestKey(time).index;if (key(n).time > time)	{ n-- }}try {var key1 = key(n);var key2 = key(n+1);} catch(e) {return null;}var dim = 1;try {key(1)[1];dim = 2;key(1)[2];dim = 3;} catch(e) {}t = time - key1.time;d = key2.time - key1.time;sX = key1[0];eX = key2[0] - key1[0];if (dim >= 2) {sY = key1[1];eY = key2[1] - key1[1];if (dim >= 3) {sZ = key1[2];eZ = key2[2] - key1[2];}}if ((time < key1.time) || (time > key2.time)) {return value;} else {val1 =  outBack(t, sX, eX, d, a, p, s);switch (dim) {case 1:return val1;break;case 2:val2 = outBack(t, sY, eY, d, a, p, s);return [val1, val2];break;case 3:val2 = outBack(t, sY, eY, d, a, p, s);val3 = outBack(t, sZ, eZ, d, a, p, s);return [val1, val2, val3];break;default:return null;}}}(easeAndWizz() || value);";
+    return exp;
+}
+
+
+
+//SQUASH AND STRETCH SCALE
+function squashStretchScale(a, f, d){
+   var amp, freq, decay;
+   if (typeof a === "undefined" || a === null) {
+		   amp = 3.0;
+		   } else {
+		   		amp = a;
+		   }
+   if (typeof f === "undefined" || f === null) {
+		   freq = 3.0;
+	   		} else {
+		   		freq = f;
+		   }
+   if (typeof d === "undefined" || d === null) {
+	   		decay = 2.0;
+   			} else {
+		   		decay = d;
+		   }
+    var exp = 
+    "var amp = "+amp+";var freq = "+freq+";var decay = "+decay+";t = time - inPoint;x = scale[0] + amp*Math.sin(freq*t*2*Math.PI)/Math.exp(decay*t);y = (1/x)*10000;[x,y];";
+    return exp;
+}
+
+
+//UNDULATION
+function undulation(xAmp, xFreq, xSpeed){
+    var xAmp = typeof xAmp !== 'undefined' ? xAmp : 40;
+    var xFreq = typeof xFreq !== 'undefined' ? xFreq : .3;
+    var xSpeed = typeof xSpeed !== 'undefined' ? xSpeed : 150;
+    var exp = 
+    "var xAmp ="+xAmp+";xFreq ="+xFreq+";xSpeed ="+xSpeed+";wl = xSpeed/xFreq;phaseOffset = ((position[0]%wl)/wl)*2*Math.PI;y = xAmp*Math.sin(2*Math.PI*xFreq*time + phaseOffset);value + [0,y];";
+    return exp;
+}
+
+
+//JUMPY WIGGLE
+function jumpyWiggle(fps, amount){
+    var fps = typeof fps !== 'undefined' ? fps : 5;
+    var amount = typeof amount !== 'undefined' ? amount : 25;
+    var exp = 
+    "var fps = "+fps+";var amount = "+amount+";wiggle(fps,amount,octaves = 1, amp_mult = 0.5,(Math.round(time*fps))/fps);";
+    return exp;
+}
+
+
+//RANDOM GRID
+function randomGrid(columns, tHold, tMin, tMax){
+    var columns = typeof columns !== 'undefined' ? columns : 10; //number of columns in grid
+    var tHold = typeof tHold !== 'undefined' ? tHold : .2; //hold time (must be less than tmin)
+    var tMin = typeof tMin !== 'undefined' ? tMin : .5; //minimum cycle time (can't be zero)
+    var tMax = typeof tMax !== 'undefined' ? tMax : 1; //maximum cycle time
+//    var exp = "hey";
+    var exp = 
+    "var columns = "+columns+";var tHold = "+tHold+";var tMin = "+tMin+";var tMax = "+tMax+";var gap = this_comp.width/columns;var origin = [gap,gap];var xGrid = columns - 1;var yGrid = Math.floor(this_comp.height/gap) - 1;var start = 0;var end = 0;var j = 1;while (time >= end){j += 1;seedRandom(j,true);start = end;end += random(tMin,tMax);}targetX = Math.floor(random(0,xGrid)); targetY = Math.floor(random(0,yGrid)); seedRandom(j-1,true);x = random();oldX = Math.floor(random(0,xGrid)); oldY = Math.floor(random(0,yGrid)); if(targetX == oldX && targetY == oldY){origin + [oldX,oldY]*gap;}else if (time - start < tHold){origin + [oldX,oldY]*gap;}else{deltaX = Math.abs(targetX - oldX);deltaY = Math.abs(targetY - oldY);xTime = (end - start - tHold)*(deltaX/(deltaX + deltaY));yTime = (end - start - tHold)*(deltaY/(deltaX + deltaY));if (time < start + tHold + xTime){startPos = origin + [oldX,oldY]*gap;targetPos = origin + [targetX,oldY]*gap;easeOut((time - start - tHold)/xTime, startPos, targetPos);}else{startPos = origin + [targetX,oldY]*gap;targetPos = origin + [targetX,targetY]*gapeaseIn((time - start - tHold - xTime)/yTime, startPos, targetPos);}}";
+    return exp;
+}
