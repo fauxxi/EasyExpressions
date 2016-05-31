@@ -1,6 +1,6 @@
 # EasyExpressions
 
-Easily add and manipulate some common whiz-bang animation expressions thru a GUI in Adobe After Effects.
+Easily add and manipulate some common whiz-bang animation expressions through a GUI in Adobe After Effects.
 
 The current library of expressions is based on [this collection.](https://www.youtube.com/watch?v=u4aN7qSWw6Y) Special thanks to Philomena Vasquez for offering [the original expressions project file for download.](https://dl.dropboxusercontent.com/u/10420220/Blog/Expressions.zip)
 
